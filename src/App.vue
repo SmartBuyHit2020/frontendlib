@@ -65,12 +65,12 @@
 		   </a>          
 		 </li>
          <li class="treeview">
-           <a href="#">
-             <i class="fa fa-dashboard"></i> <span>账户管理</span>
+           <router-link to="/user">
+             <i class="fa fa-dashboard"></i> <span>用户管理</span>
              <span class="pull-right-container">
                <i class="fa fa-angle-left pull-right"></i>
              </span>
-           </a>          
+           </router-link>          
          </li>
        </ul>
      </section>
@@ -101,7 +101,7 @@
        <div class="box">
          
          <div class="box-body">
-            主显示区
+            <router-view></router-view>
          </div>
          
        </div>
