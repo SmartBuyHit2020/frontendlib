@@ -37,7 +37,7 @@
 </template>
 
 <script>
-	import axios from "axios";
+	//import axios from "axios";
 	export default {
 		name: "GoodsAdd",
 		data() {
@@ -51,21 +51,23 @@
 					num: ''
 
 				}
-			};
+			}
 		},
-	},
-	methods: {
-		add() {
-			axios.post("http://localhost:8080/goods/add", this.goods).then(result => {
-				if (result.data.status == "OK") {
-					alert(result.data.message);
-					this.$router.push("/goods/list"); //编程方式跳转到部门列表组件
-				} else {
-					alert(result.data.message);
-				}
-			});
+		methods:{
+			add(){
+				this.axiosJSON.post("/goods/add",this.goods).then(result=>{
+					if(result.data.status=="OK"){
+						alert(result.data.message);
+						this.$router.push("/goods/list"); //编程方式跳转到部门列表组件
+					}
+					else{
+						alert(result.data.message);
+					}
+				});
+			}
 		}
-	}
+	
+	
 	}
 </script>
 
