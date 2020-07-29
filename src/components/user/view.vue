@@ -60,7 +60,7 @@
 
 <script>
 	//部门查看组件
-	import axios from "axios";
+	//import axios from "axios";
 	export default {
 		name:"UserView",
 		data(){
@@ -85,7 +85,7 @@
 		methods:{
 			getUser(no){
 				
-				axios.get("http://localhost:8080/user/get?no="+no).then(result=>{
+				this.axiosJSON.get("/user/get?no="+no).then(result=>{
 					this.user=result.data.result;
 				});
 			},

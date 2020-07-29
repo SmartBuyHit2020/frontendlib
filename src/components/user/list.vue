@@ -33,7 +33,7 @@
 </template>
 
 <script>
-	import axios from "axios";
+	//import axios from "axios";
 	export default {
 		name:"UserList",
 		data(){
@@ -50,7 +50,7 @@
 		},
 		methods:{
 			getList(){
-				axios.get("http://localhost:8080/user/list/all/page",{
+				this.axiosJSON.get("/user/list/all/page",{
 					params:{
 						rows:this.rows,
 						page:this.page
@@ -64,7 +64,7 @@
 			deleteUser(no){
 				let checkresult=confirm("您确认要删除此用户么");
 				if(checkresult){
-					axios.post("http://localhost:8080/user/delete",{no:no}).then(result=>{
+					this.axiosJSON.post("/user/delete",{no:no}).then(result=>{
 						alert(result.data.message);
 						if(result.data.status=="OK"){
 							this.getList();
