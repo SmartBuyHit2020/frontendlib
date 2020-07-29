@@ -33,9 +33,9 @@ Vue.use(VueRouter)
 	{path:"/goods",name:"goodsmain", component:GoodsMain,children:[
 		{path:"list",name:"goodslist",component:GoodsList},
 		{path:"add",name:"goodsadd",component:GoodsAdd},
-		{path:"modify/:no",name:"goodsmodify",component:GoodsModify},
-		{path:"view/:no",name:"goodsview",component:GoodsView,props:true},
-		{path:"", redirect: "add" }
+		{path:"modify/:id",name:"goodsmodify",component:GoodsModify},
+		{path:"view/:id",name:"goodsview",component:GoodsView,props:true},
+		{path:"", redirect: "list" }
 	]}
 ]
 

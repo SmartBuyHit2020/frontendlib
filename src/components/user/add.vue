@@ -39,7 +39,7 @@
 	  		<label for="exampleInputAddress1">地址</label>
 	  		<input type="text" class="form-control" v-model="user.address" required>
 	  </div>
-	  <button type="submit" class="btn btn-primary">提交</button>
+	  <button type="submit" class="btn btn-primary" >提交</button>
 	  <router-link to="/user/list" class="btn btn-default">取消</router-link>
 	</form>
 
