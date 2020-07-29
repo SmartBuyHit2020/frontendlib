@@ -50,7 +50,7 @@
 </template>
 
 <script>
-	import axios from "axios";
+	//import axios from "axios";
 	//部门修改组件
 	export default {
 		name:"UserModify",
@@ -77,12 +77,12 @@
 		methods:{
 			getUser(no){
 				
-				axios.get("http://localhost:8080/user/get?no="+no).then(result=>{
+				this.axiosJSON.get("/user/get?no="+no).then(result=>{
 					this.user=result.data.result;
 				});
 			},
 			modify(){
-				axios.post("http://localhost:8080/user/modify",this.user).then(result=>{
+				this.axiosJSON.post("/user/modify",this.user).then(result=>{
 					if(result.data.status=="OK"){
 						alert(result.data.message);
 						this.$router.push("/user/list"); //编程方式跳转到部门列表组件

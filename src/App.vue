@@ -124,8 +124,6 @@
 
   <div id="app">
    smartbuy商城
-    <div>黄嘉铉测试修改</div>
-
   </div>
   </div>
 </template>
