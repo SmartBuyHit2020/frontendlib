@@ -41,12 +41,12 @@
        <ul class="sidebar-menu" data-widget="tree">
          <li class="header">系统功能选择</li>
          <li class="treeview">
-           <a href="#">
+           <router-link to="/goods">
              <i class="fa fa-dashboard"></i> <span>商品</span>
              <span class="pull-right-container">
                <i class="fa fa-angle-left pull-right"></i>
              </span>
-           </a>          
+              </router-link>         
          </li>
 		 <li class="treeview">
 		   <a href="#">
