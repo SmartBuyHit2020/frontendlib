@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import HomeMain from "./../components/home/main.vue";
+import AdminLogin from "./../components/admin/login.vue";
 
 //引入用户的组件
 import UserMain  from "./../components/user/main.vue";
@@ -22,7 +23,7 @@ Vue.use(VueRouter)
   const routes = [
   
 	{path:"/",name:"homemain",component:HomeMain},
-	
+	{path:"/login",name:"login",component:AdminLogin},
 	{path:"/user",name:"usermain", component:UserMain,children:[
 		{path:"list",name:"userlist",component:UserList},
 		{path:"add",name:"useradd",component:UserAdd},
@@ -33,9 +34,9 @@ Vue.use(VueRouter)
 	{path:"/goods",name:"goodsmain", component:GoodsMain,children:[
 		{path:"list",name:"goodslist",component:GoodsList},
 		{path:"add",name:"goodsadd",component:GoodsAdd},
-		{path:"modify/:no",name:"goodsmodify",component:GoodsModify},
-		{path:"view/:no",name:"goodsview",component:GoodsView,props:true},
-		{path:"", redirect: "add" }
+		{path:"modify/:id",name:"goodsmodify",component:GoodsModify},
+		{path:"view/:id",name:"goodsview",component:GoodsView,props:true},
+		{path:"", redirect: "list" }
 	]}
 ]
 

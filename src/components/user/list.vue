@@ -1,14 +1,14 @@
 <template>
 	<div class="box">
 		<div class="box-header with-border">
-		  <h3 class="box-title">用户管理</h3>	          
+		  <h3 class="box-title">账户管理</h3>	          
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered">
 			  <thead>
 				<tr>
 				  <th scope="col">编号</th>
-				  <th scope="col">ID</th>
+				  <th scope="col">账号</th>
 				  <th scope="col">姓名</th>
 				  <th scope="col">操作</th>
 				</tr>
@@ -21,13 +21,12 @@
 					<td>
 					  <router-link v-bind:to="'/user/view/'+dm.no" class="btn btn-default">查看详细信息</router-link>
 					  <a href="#" v-on:click="deleteUser(dm.no)"  class="btn btn-danger">删除</a> 
+					   <router-link v-bind:to="'/user/modify/'+dm.no" class="btn btn-info">修改</router-link>
 					</td>
 				</tr>
 			  </tbody>
 			</table>
 		</div>
-		<!-- /.box-body -->
-		<router-link to="/user/add" class="btn btn-default">增加用户</router-link>
 	</div>
 	
 </template>

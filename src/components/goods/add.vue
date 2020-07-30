@@ -6,6 +6,7 @@
 		<div class="box-body">
 			<form method="post" v-on:submit.prevent="add()">
 				<div class="form-group">
+					
 					<label for="exampleInputId1">商品分类</label>
 					<input type="text" class="form-control" v-model="goods.itemid" required>
 					<small id="emailHelp" class="form-text text-muted"></small>
