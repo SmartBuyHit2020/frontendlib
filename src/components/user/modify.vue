@@ -7,12 +7,12 @@
 <div class="box-body">
   <form  method="post" v-on:submit.prevent="modify()">
 	  <div class="form-group">
-		<label for="exampleInputEmail1">用户编码</label>
+		<label for="exampleInputEmail1">账号</label>
 		<input type="text" class="form-control" v-model="user.id" >
 		<small id="emailHelp" class="form-text text-muted"></small>
 	  </div>
 	  <div class="form-group">
-		<label for="exampleInputPassword1">用户名称</label>
+		<label for="exampleInputPassword1">姓名</label>
 		<input type="text" class="form-control" v-model="user.name">
 	  </div>
 	  <div class="form-group">
