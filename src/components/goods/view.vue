@@ -10,6 +10,9 @@
 			<router-link to="/goods/add" class="label label-warning">加入购物车</router-link>
 		</ul>
 		
+		
+		
+		
 	</div>
 </template>
 
@@ -40,13 +43,18 @@
 					this.goods=result.data.result;
 				});
 			},
+				
+			addToCar(){
+				
+			}
+			
 		}
 		}
 </script>
 
 <style>
 	.content{
-;
+
 	}
 		
 	.content ul{
@@ -63,4 +71,6 @@
 	.info li{
 		 margin: 20px 20px 20px 25px;
 	}
+	
+	
 </style>
