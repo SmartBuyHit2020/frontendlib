@@ -26,7 +26,7 @@
     </form>
     <!-- /.social-auth-links -->
     <a href="#" class="btn btn-info col-xs-6">忘记密码</a>
-    <a href="register.html"  class="btn btn-info text-center col-xs-6">注册新用户</a>
+    <router-link to="/user/add" class="btn btn-default col-xs-6">注册新账户</router-link>
 
   </div>
   <!-- /.login-box-body -->
