@@ -7,7 +7,7 @@
 				</ul>
 		        <ul v-for="item in itemList" v-bind:key="item.id">
 		            <li> 
-					 <a href="#" v-on:click="selectByItemId(item.id)"  >{{item.name}}</a>
+					 <a href="#" v-on:click="click(item.id)"  >{{item.name}}</a>
 					</li>
 		          			
 		
@@ -69,6 +69,7 @@
 			return {
 				goodsList:[],
 				itemList:[],
+				itemid:0,
 				page:1,
 				rows:10,
 				count:0,
@@ -90,8 +91,10 @@
 					this.goodsList=result.data.list;
 					this.count=result.data.count;
 					this.pageCount=result.data.pageCount;
+					this.itemid=0;
 				});
 			},
+			
 			getItemList(){
 				this.axiosJSON.get("/item/list/all"
 				).then(result=>{
@@ -119,32 +122,48 @@
 			},
 			selectByItemId(id){
 				///list/all/itemid
-				this.axiosJSON.get("/goods/list/all/itemid",{
+				this.axiosJSON.get("/goods/list/all/page/item",{
 					params:{
-						itemid:id
+						
+							rows:this.rows,
+							page:this.page,
+						    itemid:id
 						
 					}
 				}).then(result=>{
 						
 						if(result.data.status=="OK"){
 							this.goodsList=result.data.list;
+							this.count=result.data.count;
+							this.pageCount=result.data.pageCount;
+							this.itemid=id;
 						}
 					});
+			},
+			click(itemid){
+				this.page=1;
+				this.selectByItemId(itemid);
 			},
 			uppPage(){
 				if(this.page<this.pageCount){
 					this.page++;
 				}
-				
+				if(this.itemid==0)
 				this.getList();
+				else{
+					this.selectByItemId(this.itemid)
+				}
 			
 			},
 			dowmPage(){
 				if(this.page>1){
 					this.page--;
 				}
-				
+				if(this.itemid==0)
 				this.getList();
+				else{
+					this.selectByItemId(this.itemid)
+				}
 			
 			}
 		}
