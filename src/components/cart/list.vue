@@ -18,7 +18,7 @@
 				  <td>{{cart.price}}</td>
 				   <td>{{cart.num}}</td>
 					<td>
-					  <a href="#" v-on:click="deleteGoods(cart)"  class="btn btn-danger">删除</a> 
+					  <a href="#" v-on:click="deleteGoods(cart.uid,cart.pid)"  class="btn btn-danger">删除</a> 
 					</td>
 				</tr>
 			  </tbody>
@@ -49,15 +49,19 @@
 					this.cartList=result.data.list;
 				});
 			},
-			deleteGoods(cart){
+			deleteGoods(uid,pid){
 				let checkresult=confirm("您确认要删除此商品么");
 				if(checkresult){
-					this.axiosJSON.post("/carts/delete", cart).then(result => {
-						if (result.data.status == "OK") {
-							alert(result.data.message);
-							this.$router.push("/cart/list"); //编程方式跳转到列表组件
-						} else {
-							alert(result.data.message);
+					this.axiosJSON.get("/carts/delete",{
+					params:{
+						uid:uid,
+						pid:pid
+						
+					}
+					}).then(result=>{
+						alert(result.data.message);
+						if(result.data.status=="OK"){
+							this.getList();
 						}
 					});
 				}
