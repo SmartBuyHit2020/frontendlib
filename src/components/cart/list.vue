@@ -16,7 +16,10 @@
 				<tr v-for="cart in cartList" v-bind:key="cart.name">
 				  <td>{{cart.name}}</td>
 				  <td>{{cart.price}}</td>
-				   <td>{{cart.num}}</td>
+				   <td>
+				   <a href="#" v-on:click="minusNum(cart.num,cart.pid)"  class="btn btn-default">-</a>
+				   {{cart.num}}</td>
+				   <a href="#" v-on:click="addNum(cart.num,cart.pid)"  class="btn btn-default">+</a>
 					<td>
 					  <a href="#" v-on:click="deleteGoods(cart.uid,cart.pid)"  class="btn btn-danger">删除</a> 
 					</td>
@@ -67,10 +70,39 @@
 				}
 				
 				
-			}
-			
-		}
+			},
+			addNum(amount,pid){
+				this.axiosJSON.get("/carts/add",{
+					params:{
+						amount:amount+1,
+						pid:pid
+						
+					}
+					}).then(result=>{
+						//alert(result.data.message);
+						if(result.data.status=="OK"){
+							this.getList();
+						}
+					});
+			},
+			minusNum(amount,pid){
+				this.axiosJSON.get("/carts/add",{
+					params:{
+						amount:amount-1,
+						pid:pid
+						
+					}
+					}).then(result=>{
+						//alert(result.data.message);
+						if(result.data.status=="OK"){
+							this.getList();
+						}
+					});
+			},
+				
+				
 	}
+}
 </script>
 
 <style>
