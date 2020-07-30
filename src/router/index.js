@@ -46,7 +46,7 @@ Vue.use(VueRouter)
 		{path:"index",name:"goodsindex",component:GoodsIndex},
 		{path:"modify/:id",name:"goodsmodify",component:GoodsModify},
 		{path:"view/:id",name:"goodsview",component:GoodsView,props:true},
-		{path:"", redirect: "list" }
+		{path:"", redirect: "index" }
 	]},
 	{path:"/cart",name:"cartmain", component:CartMain,children:[
 		{path:"list",name:"cartlist",component:CartList},
