@@ -49,12 +49,12 @@
               </router-link>         
          </li>
 		 <li class="treeview">
-		   <a href="#">
+			 <router-link to="/cart">
 		     <i class="fa fa-dashboard"></i> <span>购物车</span>
 		     <span class="pull-right-container">
 		       <i class="fa fa-angle-left pull-right"></i>
 		     </span>
-		   </a>          
+		  </router-link>
 		 </li>
 		 <li class="treeview">
 		   <a href="#">

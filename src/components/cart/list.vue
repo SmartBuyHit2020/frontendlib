@@ -7,42 +7,33 @@
 			<table class="table table-bordered">
 			  <thead>
 				<tr>
-				  <th scope="col">商品名</th>
-				  <th scope="col">ID</th>
-				  <th scope="col">姓名</th>
-				  <th scope="col">操作</th>
+				  <th scope="col">商品名称</th>
+				  <th scope="col">价格</th>
+				  <th scope="col">数量</th>
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr v-for="dm in userList" v-bind:key="dm.no">
-				  <td>{{dm.no}}</td>
-				  <td>{{dm.id}}</td>
-				  <td>{{dm.name}}</td>
+				<tr v-for="cart in cartList" v-bind:key="cart.name">
+				  <td>{{cart.name}}</td>
+				  <td>{{cart.price}}</td>
+				   <td>{{cart.num}}</td>
 					<td>
-					  <router-link v-bind:to="'/user/view/'+dm.no" class="btn btn-default">查看详细信息</router-link>
-					  <a href="#" v-on:click="deleteUser(dm.no)"  class="btn btn-danger">删除</a> 
+					  <a href="#" v-on:click="deleteGoods(cart)"  class="btn btn-danger">删除</a> 
 					</td>
 				</tr>
 			  </tbody>
 			</table>
 		</div>
-		<!-- /.box-body -->
-		<router-link to="/user/add" class="btn btn-default">增加用户</router-link>
 	</div>
-	
 </template>
 
 <script>
 	//import axios from "axios";
 	export default {
-		name:"UserList",
+		name:"CartList",
 		data(){
 			return {
-				userList:[],
-				page:1,
-				rows:10,
-				count:0,
-				pageCount:0
+				cartList:[]
 			};
 		},
 		created(){ //当前组件的生命周期方法，组件创建后
@@ -50,33 +41,34 @@
 		},
 		methods:{
 			getList(){
-				this.axiosJSON.get("/user/list/all/page",{
+				this.axiosJSON.get("/carts/list",{
 					params:{
-						rows:this.rows,
-						page:this.page
+						uid:0
 					}
 				}).then(result=>{
-					this.userList=result.data.list;
-					this.count=result.data.count;
-					this.pageCount=result.data.pageCount;
+					this.cartList=result.data.list;
 				});
 			},
-			deleteUser(no){
-				let checkresult=confirm("您确认要删除此用户么");
+			deleteGoods(cart){
+				let checkresult=confirm("您确认要删除此商品么");
 				if(checkresult){
-					this.axiosJSON.post("/user/delete",{no:no}).then(result=>{
-						alert(result.data.message);
-						if(result.data.status=="OK"){
-							this.getList();
+					this.axiosJSON.post("/carts/delete", cart).then(result => {
+						if (result.data.status == "OK") {
+							alert(result.data.message);
+							this.$router.push("/cart/list"); //编程方式跳转到列表组件
+						} else {
+							alert(result.data.message);
 						}
 					});
 				}
 				
 				
 			}
+			
 		}
 	}
 </script>
 
 <style>
+	
 </style>
