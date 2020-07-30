@@ -15,6 +15,8 @@ import GoodsList  from "./../components/goods/list.vue";
 import GoodsAdd  from "./../components/goods/add.vue";
 import GoodsModify  from "./../components/goods/modify.vue";
 import GoodsView  from "./../components/goods/view.vue";
+import ItemInfo  from "./../components/goods/item.vue";
+import GoodsIndex from "./../components/goods/index.vue";
 
 
 
@@ -34,9 +36,11 @@ Vue.use(VueRouter)
 	{path:"/goods",name:"goodsmain", component:GoodsMain,children:[
 		{path:"list",name:"goodslist",component:GoodsList},
 		{path:"add",name:"goodsadd",component:GoodsAdd},
+		{path:"item",name:"iteminfo",component:ItemInfo},
+		{path:"index",name:"goodsindex",component:GoodsIndex},
 		{path:"modify/:id",name:"goodsmodify",component:GoodsModify},
 		{path:"view/:id",name:"goodsview",component:GoodsView,props:true},
-		{path:"", redirect: "list" }
+		{path:"", redirect: "index" }
 	]}
 ]
 

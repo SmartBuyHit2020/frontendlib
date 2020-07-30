@@ -12,7 +12,8 @@
 		          			
 		
 		        </ul>
-		        <a href="#" class="mod">修改分类</a>
+		      
+				 <router-link v-bind:to="'/goods/item/'" class="mod">修改分类</router-link>
 		    </div>
 		<div class="box-header with-border">
 		  <h3 class="box-title">商品管理</h3>	          
@@ -45,7 +46,7 @@
 		</div>
 		<!-- /.box-body -->
 		<router-link to="/goods/add" class="btn btn-default">增加商品</router-link>
-		<nav >
+		<nav class="page">
 		  <ul class="pager">
 		    <li><a href="#"  v-on:click="dowmPage">上一页</a></li>
 			<span class="label label-info">{{page}}</span>
@@ -53,8 +54,9 @@
 			<li><a>总页数 {{pageCount}}</a></li>
 			<li><a>跳转到</a></li>
 			<li></li>
-			
+			 <router-link to="/goods/index" class="btn btn-warning">返回商品首页</router-link>
 		  </ul>
+		  
 		</nav>
 	</div>
 </template>
