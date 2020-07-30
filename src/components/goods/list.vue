@@ -7,12 +7,13 @@
 				</ul>
 		        <ul v-for="item in itemList" v-bind:key="item.id">
 		            <li> 
-					 <a href="#" v-on:click="selectByItemId(item.id)"  >{{item.name}}</a>
+					 <a href="#" v-on:click="click(item.id)"  >{{item.name}}</a>
 					</li>
 		          			
 		
 		        </ul>
-		        <a href="#" class="mod">修改分类</a>
+		      
+				 <router-link v-bind:to="'/goods/item/'" class="mod">修改分类</router-link>
 		    </div>
 		<div class="box-header with-border">
 		  <h3 class="box-title">商品管理</h3>	          
@@ -45,7 +46,7 @@
 		</div>
 		<!-- /.box-body -->
 		<router-link to="/goods/add" class="btn btn-default">增加商品</router-link>
-		<nav >
+		<nav class="page">
 		  <ul class="pager">
 		    <li><a href="#"  v-on:click="dowmPage">上一页</a></li>
 			<span class="label label-info">{{page}}</span>
@@ -53,8 +54,9 @@
 			<li><a>总页数 {{pageCount}}</a></li>
 			<li><a>跳转到</a></li>
 			<li></li>
-			
+			 <router-link to="/goods/index" class="btn btn-warning">返回商品首页</router-link>
 		  </ul>
+		  
 		</nav>
 	</div>
 </template>
@@ -67,6 +69,7 @@
 			return {
 				goodsList:[],
 				itemList:[],
+				itemid:0,
 				page:1,
 				rows:10,
 				count:0,
@@ -88,8 +91,10 @@
 					this.goodsList=result.data.list;
 					this.count=result.data.count;
 					this.pageCount=result.data.pageCount;
+					this.itemid=0;
 				});
 			},
+			
 			getItemList(){
 				this.axiosJSON.get("/item/list/all"
 				).then(result=>{
@@ -117,32 +122,48 @@
 			},
 			selectByItemId(id){
 				///list/all/itemid
-				this.axiosJSON.get("/goods/list/all/itemid",{
+				this.axiosJSON.get("/goods/list/all/page/item",{
 					params:{
-						itemid:id
+						
+							rows:this.rows,
+							page:this.page,
+						    itemid:id
 						
 					}
 				}).then(result=>{
 						
 						if(result.data.status=="OK"){
 							this.goodsList=result.data.list;
+							this.count=result.data.count;
+							this.pageCount=result.data.pageCount;
+							this.itemid=id;
 						}
 					});
+			},
+			click(itemid){
+				this.page=1;
+				this.selectByItemId(itemid);
 			},
 			uppPage(){
 				if(this.page<this.pageCount){
 					this.page++;
 				}
-				
+				if(this.itemid==0)
 				this.getList();
+				else{
+					this.selectByItemId(this.itemid)
+				}
 			
 			},
 			dowmPage(){
 				if(this.page>1){
 					this.page--;
 				}
-				
+				if(this.itemid==0)
 				this.getList();
+				else{
+					this.selectByItemId(this.itemid)
+				}
 			
 			}
 		}
