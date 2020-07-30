@@ -49,16 +49,19 @@
 		},
 		methods:{
 			getList(){
-				this.axiosJSON.get("/user/list/all/page",{
-					params:{
-						rows:this.rows,
-						page:this.page
-					}
-				}).then(result=>{
-					this.userList=result.data.list;
-					this.count=result.data.count;
-					this.pageCount=result.data.pageCount;
-				});
+
+					this.axiosJSON.get("/user/list/all/page",{
+						params:{
+							rows:this.rows,
+							page:this.page
+						}
+					}).then(result=>{
+						this.userList=result.data.list;
+						this.count=result.data.count;
+						this.pageCount=result.data.pageCount;
+					});
+					
+				
 			},
 			deleteUser(no){
 				let checkresult=confirm("您确认要删除此用户么");
