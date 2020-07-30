@@ -27,6 +27,8 @@
 			  </tbody>
 			</table>
 		</div>
+		<a href="#" v-on:click="pay" class="btn btn-default">付款</a>
+		
 	</div>
 </template>
 
@@ -36,7 +38,14 @@
 		name:"CartList",
 		data(){
 			return {
-				cartList:[]
+				cartList:[],
+				order:{
+					id: '',
+					detailsid: '',
+					name: '',
+					price: '',
+					num: ''
+				}
 			};
 		},
 		created(){ //当前组件的生命周期方法，组件创建后
@@ -71,6 +80,24 @@
 				
 				
 			},
+			cleanGoods(uid){
+				let checkresult=confirm("您确认要提交购物车么");
+				if(checkresult){
+					this.axiosJSON.get("/carts/clean",{
+					params:{
+						uid:uid,
+						
+					}
+					}).then(result=>{
+						alert(result.data.message);
+						if(result.data.status=="OK"){
+							this.$router.push("/goods/list");
+						}
+					});
+				}
+				
+				
+			},
 			addNum(amount,pid){
 				this.axiosJSON.get("/carts/add",{
 					params:{
@@ -99,6 +126,16 @@
 						}
 					});
 			},
+			pay(){
+				/*for (var i=0;i<=this.cartList.length;i++) {
+					this.order.id=this.cartList[i].pid;
+						this.order.name=this.cartList[i].name;
+						this.order.price=this.cartlist[i].price,
+						this.order.num=this.cartList[i].num;
+					this.axiosJSON.post("/order/add",this.order);
+				}*/
+				this.cleanGoods(this.cartList[0].uid);
+			}
 				
 				
 	}
