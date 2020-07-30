@@ -78,7 +78,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from, next) => {
-	if(to.path=="/login"){
+	if(to.path=="/login"||to.path=="/user/add"){
 		next();
 	}
 	else{
