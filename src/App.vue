@@ -34,7 +34,7 @@
          </div>
          <div class="pull-left info">
            <p>管理员</p>
-           <a href="#"><i class="fa fa-circle text-success"></i>注销</a>
+           <router-link to="/login"><i class="fa fa-circle text-success"></i>登录</router-link>
          </div>
        </div>
        <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -88,9 +88,9 @@
          <small>子功能</small>
        </h1>
        <ol class="breadcrumb">
-         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li><a href="#">Examples</a></li>
-         <li class="active">Blank page</li>
+         <li><router-link to="/"><i class="fa fa-dashboard"></i>首页</router-link></li>
+         <li><a href="#"></a></li>
+         <li class="active"></li>
        </ol>
      </section>
    
