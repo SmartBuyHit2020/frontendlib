@@ -7,10 +7,9 @@
 			<li>商品名称：{{goods.name}}</li>
 			<li>价格：{{goods.price}}￥</li>
 			<li>剩余数量：{{goods.num}}</li>
-			<router-link to="/goods/add" class="label label-warning">加入购物车</router-link>
+			<li class="add"><a href="#" v-on:click="addToCar"  >加入购物车</a></li> 
+			<li class="err"><router-link to="/goods/list" class="btn btn-error">返回</router-link></li>
 		</ul>
-		
-		
 		
 		
 	</div>
@@ -45,6 +44,20 @@
 			},
 				
 			addToCar(){
+				console.log(this.goods.id);
+					this.axiosJSON.get("/carts/add/",{
+					params:{
+						pid:this.goods.id,
+						amount:1,
+						
+					}
+				}).then(result=>{
+						alert(result.data.message);
+						/*if(result.data.status=="OK"){
+							this.getList();
+						}*/
+					});
+				
 				
 			}
 			
@@ -71,6 +84,19 @@
 	.info li{
 		 margin: 20px 20px 20px 25px;
 	}
-	
-	
+		
+	.add{
+		width: 20;
+		height: 20;
+		//background-color: #00A4FF;
+		color: #FFFFFF;
+	}
+		
+	.err{
+		width: 20;
+		height: 20;
+		font-weight: 600;
+		font-size: 20px;
+		color: #FFFFFF;
+	}
 </style>
