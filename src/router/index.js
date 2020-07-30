@@ -23,6 +23,13 @@ import CartList from "./../components/cart/list.vue";
 import ItemInfo  from "./../components/goods/item.vue";
 import GoodsIndex from "./../components/goods/index.vue";
 
+import OrderMain  from "./../components/order/main.vue";
+import OrderList  from "./../components/order/list.vue";
+import OrderAdd  from "./../components/order/add.vue";
+import OrderModify  from "./../components/order/modify.vue";
+import OrderView  from "./../components/order/view.vue";
+import DetailsInfo  from "./../components/order/details.vue";
+import OrderIndex from "./../components/order/index.vue";
 
 
 
@@ -52,6 +59,15 @@ Vue.use(VueRouter)
 		{path:"list",name:"cartlist",component:CartList},
 		{path:"", redirect: "list" },
 		{path:"", redirect: "index" }
+	]},
+	{path:"/order",name:"ordermain", component:OrderMain,children:[
+		{path:"list",name:"orderlist",component:OrderList},
+		{path:"add",name:"orderadd",component:OrderAdd},
+		{path:"details",name:"detailsinfo",component:DetailsInfo},
+		{path:"index",name:"orderindex",component:OrderIndex},
+		{path:"modify/:id",name:"ordermodify",component:OrderModify},
+		{path:"view/:id",name:"orderview",component:OrderView,props:true},
+		{path:"", redirect: "list" }
 	]}
 ]
 
