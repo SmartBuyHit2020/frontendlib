@@ -21,6 +21,8 @@ import GoodsView  from "./../components/goods/view.vue";
 import CartMain from "./../components/cart/main.vue";
 import CartList from "./../components/cart/list.vue";
 import ItemInfo  from "./../components/goods/item.vue";
+import ItemAdd  from "./../components/goods/additem.vue";
+import ItemModify  from "./../components/goods/modifyitem.vue";
 import GoodsIndex from "./../components/goods/index.vue";
 
 
@@ -42,9 +44,11 @@ Vue.use(VueRouter)
 	{path:"/goods",name:"goodsmain", component:GoodsMain,children:[
 		{path:"list",name:"goodslist",component:GoodsList},
 		{path:"add",name:"goodsadd",component:GoodsAdd},
+		{path:"additem",name:"itemadd",component:ItemAdd},
 		{path:"item",name:"iteminfo",component:ItemInfo},
 		{path:"index",name:"goodsindex",component:GoodsIndex},
 		{path:"modify/:id",name:"goodsmodify",component:GoodsModify},
+		{path:"modifyitem/:id",name:"itemmodify",component:ItemModify},
 		{path:"view/:id",name:"goodsview",component:GoodsView,props:true},
 		{path:"", redirect: "index" }
 	]},
